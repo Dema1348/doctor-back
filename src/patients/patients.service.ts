@@ -7,6 +7,8 @@ import {
   CreateUpdatePatientDto,
   PatientIncludeLogBookDto,
   PatientIncludeRecordDto,
+  PatientIncludeDoctorDto,
+  PatientIncludeNotificationDto,
 } from './patient.dto';
 
 @Injectable()
@@ -31,6 +33,18 @@ export class PatientsService {
   findRecords(id: number): Promise<PatientIncludeRecordDto> {
     return this.patientRepository.findOne(id, {
       relations: ['records'],
+    });
+  }
+
+  findDoctor(id: number): Promise<PatientIncludeDoctorDto> {
+    return this.patientRepository.findOne(id, {
+      relations: ['doctor'],
+    });
+  }
+
+  findNotifications(id: number): Promise<PatientIncludeNotificationDto> {
+    return this.patientRepository.findOne(id, {
+      relations: ['notifications'],
     });
   }
 

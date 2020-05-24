@@ -36,17 +36,17 @@ export class DoctorController {
 
   @Post()
   async create(
-    @Body() userData: CreateUpdateDoctorDto,
+    @Body() doctorData: CreateUpdateDoctorDto,
   ): Promise<CreateUpdateDoctorDto> {
-    return this.doctorsService.create(userData);
+    return this.doctorsService.create(doctorData);
   }
 
   @Put('/:id')
   async update(
     @Param('id') id: number,
-    @Body() userData: CreateUpdateDoctorDto,
+    @Body() doctorData: CreateUpdateDoctorDto,
   ): Promise<boolean> {
-    return this.doctorsService.update(id, userData);
+    return this.doctorsService.update(id, doctorData);
   }
 
   @Delete('/:id')

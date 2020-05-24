@@ -10,3 +10,15 @@ export class CreateUpdateLogBookDto {
   @ApiProperty()
   patientId: number;
 }
+
+export class CreateUpdateLogBookAuthDto {
+  id: number;
+
+  @ApiProperty()
+  text: string;
+
+  @ApiProperty()
+  assignedDate: Date;
+
+  patientId: number;
+}

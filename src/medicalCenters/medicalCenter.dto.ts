@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { CreateUpdateDoctorDto } from '../doctors/doctor.dto';
 
-export class MedicalCenterDto {
+export class CreateUpdateMedicalCenterDto {
   @ApiProperty()
   name: string;
 
@@ -8,22 +9,13 @@ export class MedicalCenterDto {
   description: string;
 }
 
-export class ListMedicalCenterDto {
-  @ApiProperty()
-  id: number;
-
+export class MedicalCenterIncludeDoctorDto {
   @ApiProperty()
   name: string;
 
   @ApiProperty()
   description: string;
 
-  @ApiProperty()
-  isActive: boolean;
-
-  @ApiProperty()
-  createdAt: Date;
-
-  @ApiProperty()
-  updatedAt: Date;
+  @ApiProperty({ type: [CreateUpdateDoctorDto] })
+  doctors: CreateUpdateDoctorDto[];
 }

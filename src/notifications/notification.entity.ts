@@ -4,24 +4,20 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
-  JoinTable,
+  ManyToOne,
 } from 'typeorm';
-import { Doctor } from 'src/doctors/doctor.entity';
+import { Patient } from 'src/patients/patient.entity';
 
 @Entity()
-export class MedicalCenter {
+export class Notification {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  info: string;
 
   @Column()
-  description: string;
-
-  @Column({ default: true })
-  isActive: boolean;
+  read: boolean;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
@@ -29,7 +25,12 @@ export class MedicalCenter {
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 
-  @ManyToMany(type => Doctor)
-  @JoinTable()
-  doctors: Doctor[];
+  @ManyToOne(
+    type => Patient,
+    patient => patient.notifications,
+  )
+  patient: Patient;
+
+  @Column({ nullable: true })
+  patientId: number;
 }

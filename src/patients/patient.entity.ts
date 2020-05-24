@@ -10,6 +10,7 @@ import {
 import { LogBook } from 'src/logbooks/logbook.entity';
 import { Record } from 'src/records/record.entity';
 import { Doctor } from 'src/doctors/doctor.entity';
+import { Notification } from 'src/notifications/notification.entity';
 
 @Entity()
 export class Patient {
@@ -51,6 +52,12 @@ export class Patient {
     record => record.patient,
   )
   records: Record[];
+
+  @OneToMany(
+    type => Notification,
+    notification => notification.patient,
+  )
+  notifications: Notification[];
 
   @ManyToOne(
     type => Doctor,

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { LogBook } from './logbook.entity';
@@ -35,6 +35,14 @@ export class LogBooksService {
 
   async remove(id: number): Promise<boolean> {
     await this.logBookRepository.delete(id);
+    return true;
+  }
+
+  async isOwner(id: number, patientId: number) {
+    const logbookData = await this.logBookRepository.findOne(id);
+    if (logbookData.patientId !== patientId) {
+      throw new UnauthorizedException();
+    }
     return true;
   }
 }

@@ -37,3 +37,8 @@ export class DoctorIncludePatientDto {
   @ApiProperty({ type: [CreateUpdatePatientDto] })
   patients: CreateUpdatePatientDto[];
 }
+
+export class AssingDoctorDto {
+  @ApiProperty()
+  doctorId: number;
+}

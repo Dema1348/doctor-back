@@ -14,6 +14,8 @@ export class AuthController {
   @ApiResponse({ status: 200, description: 'token user', type: Token })
   @UseGuards(LocalAuthGuard)
   @Post('/login')
+  @ApiTags('App Doctor')
+  @ApiTags('App Patient')
   @ApiBody({ type: AuthDto })
   async loginPatient(@Request() req) {
     return this.authService.login(req.user);
@@ -22,6 +24,8 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @Get('/profile')
+  @ApiTags('App Doctor')
+  @ApiTags('App Patient')
   getProfile(@Request() req) {
     return req.user;
   }

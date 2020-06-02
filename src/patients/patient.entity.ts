@@ -32,6 +32,21 @@ export class Patient {
   @Column()
   cellPhone: string;
 
+  @Column({ unique: true })
+  run: string;
+
+  @Column()
+  stage: string;
+
+  @Column()
+  treatment: string;
+
+  @Column()
+  cellPhoneContact: string;
+
+  @Column()
+  nameContact: string;
+
   @Column({ default: true })
   isActive: boolean;
 

@@ -21,6 +21,21 @@ export class CreateUpdatePatientDto {
   password: string;
 
   @ApiProperty()
+  run: string;
+
+  @ApiProperty()
+  stage: string;
+
+  @ApiProperty()
+  treatment: string;
+
+  @ApiProperty()
+  cellPhoneContact: string;
+
+  @ApiProperty()
+  nameContact: string;
+
+  @ApiProperty()
   doctorId: number;
 }
 
@@ -40,6 +55,21 @@ export class CreateUpdatePatientAuthDto {
   @ApiProperty()
   password: string;
 
+  @ApiProperty()
+  run: string;
+
+  @ApiProperty()
+  stage: string;
+
+  @ApiProperty()
+  treatment: string;
+
+  @ApiProperty()
+  cellPhoneContact: string;
+
+  @ApiProperty()
+  nameContact: string;
+
   doctorId: number;
 }
 
@@ -58,6 +88,21 @@ export class PatientIncludeLogBookDto {
 
   @ApiProperty()
   password: string;
+
+  @ApiProperty()
+  run: string;
+
+  @ApiProperty()
+  stage: string;
+
+  @ApiProperty()
+  treatment: string;
+
+  @ApiProperty()
+  cellPhoneContact: string;
+
+  @ApiProperty()
+  nameContact: string;
 
   @ApiProperty({ type: [CreateUpdateLogBookDto] })
   logBooks: CreateUpdateLogBookDto[];
@@ -79,6 +124,21 @@ export class PatientIncludeDoctorDto {
   @ApiProperty()
   password: string;
 
+  @ApiProperty()
+  run: string;
+
+  @ApiProperty()
+  stage: string;
+
+  @ApiProperty()
+  treatment: string;
+
+  @ApiProperty()
+  cellPhoneContact: string;
+
+  @ApiProperty()
+  nameContact: string;
+
   @ApiProperty({ type: CreateUpdateDoctorDto })
   doctor: CreateUpdateDoctorDto;
 }
@@ -99,6 +159,21 @@ export class PatientIncludeRecordDto {
   @ApiProperty()
   password: string;
 
+  @ApiProperty()
+  run: string;
+
+  @ApiProperty()
+  stage: string;
+
+  @ApiProperty()
+  treatment: string;
+
+  @ApiProperty()
+  cellPhoneContact: string;
+
+  @ApiProperty()
+  nameContact: string;
+
   @ApiProperty({ type: [CreateUpdateRecordDto] })
   records: CreateUpdateRecordDto[];
 }
@@ -118,6 +193,21 @@ export class PatientIncludeNotificationDto {
 
   @ApiProperty()
   password: string;
+
+  @ApiProperty()
+  run: string;
+
+  @ApiProperty()
+  stage: string;
+
+  @ApiProperty()
+  treatment: string;
+
+  @ApiProperty()
+  cellPhoneContact: string;
+
+  @ApiProperty()
+  nameContact: string;
 
   @ApiProperty({ type: [CreateUpdateNotificationDto] })
   notifications: CreateUpdateNotificationDto[];

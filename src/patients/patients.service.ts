@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  HttpException,
+  HttpStatus,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Patient } from './patient.entity';
@@ -72,9 +77,22 @@ export class PatientsService {
   async create(
     patientData: CreateUpdatePatientDto,
   ): Promise<CreateUpdatePatientDto> {
-    const userHash = { ...patientData };
-    userHash.password = bcrypt.hashSync(userHash.password, this.saltRounds);
-    return this.patientRepository.save(userHash);
+    try {
+      const userHash = { ...patientData };
+      userHash.password = bcrypt.hashSync(userHash.password, this.saltRounds);
+      return this.patientRepository.save(userHash);
+    } catch (error) {
+      if (error.code === 'ER_DUP_ENTRY') {
+        throw new HttpException(
+          {
+            statusCode: HttpStatus.BAD_REQUEST,
+            message: error.code,
+          },
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new InternalServerErrorException();
+    }
   }
 
   async update(

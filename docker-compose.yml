@@ -1,10 +1,20 @@
 version: '3'
 services:
-  dba:
+  api:
+    container_name: api-back
+    image: 'doctoroncoapp/api-back:latest'
+    ports:
+      - '80:3000'
+    depends_on:
+      - mysql
+    links:
+      - mysql
+  mysql:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password --init-file /data/application/init.sql
     volumes:
       - ./init.sql:/data/application/init.sql
+      - ./data:/var/lib/mysql
     restart: always
     ports:
       - '3306:3306'

@@ -41,7 +41,16 @@ export class Record {
   urinals: number;
 
   @Column()
-  igc: number;
+  mucositis: number;
+
+  @Column()
+  sickness: number;
+
+  @Column()
+  catheter: number;
+
+  @Column()
+  dyspnoea: number;
 
   @Column()
   assignedDate: Date;

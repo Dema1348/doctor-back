@@ -26,10 +26,16 @@ export class CreateUpdateRecordDto {
   cold: number;
 
   @ApiProperty()
-  urinals: number;
+  mucositis: number;
 
   @ApiProperty()
-  igc: number;
+  sickness: number;
+
+  @ApiProperty()
+  catheter: number;
+
+  @ApiProperty()
+  dyspnoea: number;
 
   @ApiProperty()
   assignedDate: Date;
@@ -66,10 +72,16 @@ export class CreateUpdateRecordAuthDto {
   cold: number;
 
   @ApiProperty()
-  urinals: number;
+  mucositis: number;
 
   @ApiProperty()
-  igc: number;
+  sickness: number;
+
+  @ApiProperty()
+  catheter: number;
+
+  @ApiProperty()
+  dyspnoea: number;
 
   @ApiProperty()
   assignedDate: Date;

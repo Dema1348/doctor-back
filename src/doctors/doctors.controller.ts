@@ -8,7 +8,11 @@ import {
   Delete,
 } from '@nestjs/common';
 import { DoctorsService } from './doctors.service';
-import { CreateUpdateDoctorDto, DoctorIncludePatientDto } from './doctor.dto';
+import {
+  CreateUpdateDoctorDto,
+  DoctorIncludePatientDto,
+  DoctorIncludeNotificationDto,
+} from './doctor.dto';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
 
 @ApiTags('Doctors')
@@ -32,6 +36,14 @@ export class DoctorController {
   @Get('/:id/patient')
   async findPatient(@Param('id') id: number): Promise<DoctorIncludePatientDto> {
     return this.doctorsService.findPatients(id);
+  }
+
+  @ApiResponse({ status: 200, type: DoctorIncludePatientDto })
+  @Get('/:id/notification')
+  async findNotification(
+    @Param('id') id: number,
+  ): Promise<DoctorIncludeNotificationDto> {
+    return this.doctorsService.findNotifications(id);
   }
 
   @Post()

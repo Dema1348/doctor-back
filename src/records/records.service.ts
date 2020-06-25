@@ -3,12 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Record } from './record.entity';
 import { CreateUpdateRecordDto } from './records.dto';
+import { NotificationsService } from 'src/notifications/notifications.service';
+import { CreateUpdateNotificationDto } from 'src/notifications/notification.dto';
 
 @Injectable()
 export class RecordsService {
   constructor(
     @InjectRepository(Record)
     private recordRepository: Repository<Record>,
+    private notificationsService: NotificationsService,
   ) {}
 
   findOne(id: number): Promise<CreateUpdateRecordDto> {
@@ -19,9 +22,19 @@ export class RecordsService {
     return this.recordRepository.find();
   }
 
+  async findLast(patientId): Promise<CreateUpdateRecordDto> {
+    const [last] = await this.recordRepository.find({
+      where: { patientId },
+      order: { assignedDate: 'DESC' },
+      take: 1,
+    });
+    return last;
+  }
+
   async create(
     recordData: CreateUpdateRecordDto,
   ): Promise<CreateUpdateRecordDto> {
+    this.notificationsService.createPush(recordData);
     return this.recordRepository.save(recordData);
   }
 

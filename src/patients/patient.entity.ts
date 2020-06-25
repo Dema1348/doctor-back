@@ -7,10 +7,10 @@ import {
   OneToMany,
   ManyToOne,
 } from 'typeorm';
-import { LogBook } from 'src/logbooks/logbook.entity';
-import { Record } from 'src/records/record.entity';
-import { Doctor } from 'src/doctors/doctor.entity';
-import { Notification } from 'src/notifications/notification.entity';
+import { LogBook } from '../logbooks/logbook.entity';
+import { Record } from '../records/record.entity';
+import { Doctor } from '../doctors/doctor.entity';
+import { Notification } from '../notifications/notification.entity';
 
 @Entity()
 export class Patient {

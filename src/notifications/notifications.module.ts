@@ -9,5 +9,6 @@ import { Patient } from 'src/patients/patient.entity';
   imports: [TypeOrmModule.forFeature([Notification, Patient])],
   providers: [NotificationsService],
   controllers: [NotificationsController],
+  exports: [NotificationsService],
 })
 export class NotificationsModule {}

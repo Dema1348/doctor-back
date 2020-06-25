@@ -6,7 +6,8 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from 'typeorm';
-import { Patient } from 'src/patients/patient.entity';
+import { Patient } from '../patients/patient.entity';
+import { Notification } from '../notifications/notification.entity';
 
 @Entity()
 export class Doctor {
@@ -31,6 +32,9 @@ export class Doctor {
   @Column({ default: true })
   isActive: boolean;
 
+  @Column()
+  tokenFirebase: string;
+
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
@@ -42,4 +46,10 @@ export class Doctor {
     patient => patient.doctor,
   )
   patients: Patient[];
+
+  @OneToMany(
+    type => Notification,
+    notification => notification.doctor,
+  )
+  notifications: Notification[];
 }

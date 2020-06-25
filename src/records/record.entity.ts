@@ -31,14 +31,11 @@ export class Record {
   @Column()
   appetite: number;
 
-  @Column()
+  @Column({ type: 'decimal' })
   fever: number;
 
   @Column()
   cold: number;
-
-  @Column()
-  urinals: number;
 
   @Column()
   mucositis: number;

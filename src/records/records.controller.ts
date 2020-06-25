@@ -29,6 +29,14 @@ export class RecordsController {
   }
 
   @ApiResponse({ status: 200, type: CreateUpdateRecordDto })
+  @Get('/records/patient/:patientId')
+  async findLast(
+    @Param('patientId') patientId: number,
+  ): Promise<CreateUpdateRecordDto> {
+    return this.recordsService.findLast(patientId);
+  }
+
+  @ApiResponse({ status: 200, type: CreateUpdateRecordDto })
   @Get('/records/:id')
   async findOne(@Param('id') id: number): Promise<CreateUpdateRecordDto> {
     return this.recordsService.findOne(id);

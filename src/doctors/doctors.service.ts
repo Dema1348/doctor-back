@@ -8,7 +8,11 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Doctor } from './doctor.entity';
 import * as bcrypt from 'bcrypt';
-import { CreateUpdateDoctorDto, DoctorIncludePatientDto } from './doctor.dto';
+import {
+  CreateUpdateDoctorDto,
+  DoctorIncludePatientDto,
+  DoctorIncludeNotificationDto,
+} from './doctor.dto';
 
 @Injectable()
 export class DoctorsService {
@@ -26,6 +30,12 @@ export class DoctorsService {
   findPatients(id: number): Promise<DoctorIncludePatientDto> {
     return this.doctorRepository.findOne(id, {
       relations: ['patients'],
+    });
+  }
+
+  findNotifications(id: number): Promise<DoctorIncludeNotificationDto> {
+    return this.doctorRepository.findOne(id, {
+      relations: ['notifications'],
     });
   }
 

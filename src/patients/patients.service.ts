@@ -71,7 +71,9 @@ export class PatientsService {
   }
 
   findAll(): Promise<CreateUpdatePatientDto[]> {
-    return this.patientRepository.find();
+    return this.patientRepository.find({
+      relations: ['records'],
+    });
   }
 
   async create(

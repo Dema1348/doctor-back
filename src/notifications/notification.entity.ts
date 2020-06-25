@@ -7,6 +7,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { Patient } from 'src/patients/patient.entity';
+import { Doctor } from 'src/doctors/doctor.entity';
 
 @Entity()
 export class Notification {
@@ -14,7 +15,10 @@ export class Notification {
   id: number;
 
   @Column()
-  info: string;
+  title: string;
+
+  @Column()
+  text: string;
 
   @Column()
   read: boolean;
@@ -33,4 +37,13 @@ export class Notification {
 
   @Column({ nullable: true })
   patientId: number;
+
+  @ManyToOne(
+    type => Doctor,
+    doctor => doctor.notifications,
+  )
+  doctor: Doctor;
+
+  @Column({ nullable: true })
+  doctorId: number;
 }

@@ -74,10 +74,7 @@ export class NotificationsService {
       patientId: user.id,
       doctorId: doctor.id,
     };
-    //Logica de aletar
-    console.log(doctor);
-    console.log(user);
-    console.log(record);
+
     try {
       const response = await admin
         .messaging()

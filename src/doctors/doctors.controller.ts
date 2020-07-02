@@ -6,6 +6,8 @@ import {
   Param,
   Put,
   Delete,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { DoctorsService } from './doctors.service';
 import {
@@ -13,7 +15,8 @@ import {
   DoctorIncludePatientDto,
   DoctorIncludeNotificationDto,
 } from './doctor.dto';
-import { ApiTags, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('Doctors')
 @Controller('doctors')
@@ -32,18 +35,24 @@ export class DoctorController {
     return this.doctorsService.findOne(id);
   }
 
-  @ApiResponse({ status: 200, type: DoctorIncludePatientDto })
-  @Get('/:id/patient')
-  async findPatient(@Param('id') id: number): Promise<DoctorIncludePatientDto> {
-    return this.doctorsService.findPatients(id);
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiResponse({ status: 200, type: DoctorIncludeNotificationDto })
+  @ApiTags('App Doctor')
+  @Get('/auth/doctor/patient')
+  async findPatient(@Request() req): Promise<DoctorIncludePatientDto> {
+    return this.doctorsService.findPatients(req.user.id);
   }
 
-  @ApiResponse({ status: 200, type: DoctorIncludePatientDto })
-  @Get('/:id/notification')
-  async findNotification(
-    @Param('id') id: number,
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiResponse({ status: 200, type: DoctorIncludeNotificationDto })
+  @ApiTags('App Doctor')
+  @Get('/auth/doctor/notifications')
+  async findNotificationsAuth(
+    @Request() req,
   ): Promise<DoctorIncludeNotificationDto> {
-    return this.doctorsService.findNotifications(id);
+    return this.doctorsService.findNotifications(req.user.id);
   }
 
   @Post()

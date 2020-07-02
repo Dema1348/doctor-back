@@ -22,6 +22,38 @@ export class CreateUpdateDoctorDto {
   password: string;
 }
 
+export class PatientDto {
+  @ApiProperty()
+  email: string;
+
+  @ApiProperty()
+  firstName: string;
+
+  @ApiProperty()
+  lastName: string;
+
+  @ApiProperty()
+  cellPhone: string;
+
+  @ApiProperty()
+  password: string;
+
+  @ApiProperty()
+  run: string;
+
+  @ApiProperty()
+  stage: string;
+
+  @ApiProperty()
+  treatment: string;
+
+  @ApiProperty()
+  cellPhoneContact: string;
+
+  @ApiProperty()
+  nameContact: string;
+}
+
 export class DoctorIncludePatientDto {
   @ApiProperty()
   email: string;
@@ -41,8 +73,8 @@ export class DoctorIncludePatientDto {
   @ApiProperty()
   password: string;
 
-  @ApiProperty({ type: [CreateUpdatePatientDto] })
-  patients: CreateUpdatePatientDto[];
+  @ApiProperty({ type: [PatientDto] })
+  patients: PatientDto[];
 }
 
 export class DoctorIncludeNotificationDto {

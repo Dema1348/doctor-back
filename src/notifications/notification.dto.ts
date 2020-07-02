@@ -2,6 +2,9 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUpdateNotificationDto {
   @ApiProperty()
+  id: number;
+
+  @ApiProperty()
   title: string;
 
   @ApiProperty()
@@ -15,4 +18,7 @@ export class CreateUpdateNotificationDto {
 
   @ApiProperty()
   doctorId: number;
+
+  @ApiProperty()
+  createdAt: Date;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -65,9 +66,15 @@ export class NotificationsService {
         title: `El paciente ${user.firstName}`,
         body: `Ha completado correctamente el ingreso de sus sintomas `,
       },
+      data: {
+        // eslint-disable-next-line @typescript-eslint/camelcase
+        notification_foreground: 'true',
+        notification_body: `Ha completado correctamente el ingreso de sus sintomas `,
+        notification_title: `El paciente ${user.firstName}`,
+      },
     };
 
-    const notificationData: CreateUpdateNotificationDto = {
+    const notificationData = {
       title: message.notification.title,
       text: message.notification.body,
       read: false,

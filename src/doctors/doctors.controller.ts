@@ -37,7 +37,7 @@ export class DoctorController {
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiResponse({ status: 200, type: DoctorIncludeNotificationDto })
+  @ApiResponse({ status: 200, type: DoctorIncludePatientDto })
   @ApiTags('App Doctor')
   @Get('/auth/doctor/patient')
   async findPatient(@Request() req): Promise<DoctorIncludePatientDto> {
